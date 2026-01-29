@@ -1,30 +1,23 @@
 pipeline {
     agent any
 
-    environment {
-        IMAGE_NAME = "prayushmaharjan/pythonapp"
-    }
-
     stages {
-
-        stage('Clone Repo') {
+        stage('clone repo') {
             steps {
-                checkout scm
+                echo 'Building..'
+                 checkout scm
             }
         }
-
-        stage('Build Docker Image') {
+        stage('image build') {
             steps {
-                sh 'docker build -t $IMAGE_NAME:latest .'
+                echo 'Testing..'
+                sh 'docker image build -t pythonimg:-1.1 .'
             }
         }
-
-        stage('Run Container') {
+        stage('container build') {
             steps {
-                sh '''
-                docker rm -f python-app || true
-                docker run -d --name python-app -p 6060:5000 $IMAGE_NAME:latest
-                '''
+                echo 'Deploying....'
+                 sh 'docker container run -d --name py_app -p 8080:5000 pythonimg:0.1'
             }
         }
     }
