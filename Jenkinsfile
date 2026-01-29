@@ -11,7 +11,7 @@ pipeline {
         stage('image build') {
             steps {
                 echo 'Testing..'
-                sh 'docker image build -t pythonimg:-1.1 .'
+                sh 'docker image build -t pythonimg:0.1 .'
             }
         }
         stage('container build') {
