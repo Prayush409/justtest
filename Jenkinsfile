@@ -17,7 +17,7 @@ pipeline {
         stage('container build') {
             steps {
                 echo 'Deploying....'
-                 sh 'docker container run -d --name py_app -p 8099:6060 pythonimg:0.1'
+                 sh 'docker container run -d --name py_app_v2 -p 8099:6060 pythonimg:0.1'
             }
         }
     }
